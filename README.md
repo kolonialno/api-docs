@@ -9,7 +9,7 @@ And btw, we're hiring! [Read more about our technology](https://kolonial.no/om/t
 
 ## Quick start
 
-    curl -H "Accept: application/json" -H "User-Agent: <YOUR-USER-AGENT>/1.0" -H "X-Client-Token: <YOUR-CLIENT-TOKEN>" https://kolonial.no/api/v1/products/9329/
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -H "User-Agent: <YOUR-USER-AGENT>/1.0" -H "X-Client-Token: <YOUR-CLIENT-TOKEN>" https://kolonial.no/api/v1/products/9329/
 
 
 ## Anonymous requests
