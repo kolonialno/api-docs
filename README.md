@@ -56,7 +56,8 @@ Update cart contents:
 
 These fields will be removed at a later date, please make use of the new fields as soon as possible:
 
-- Product entries
- - `price` -> `gross_price`
- - `unit_price` -> `gross_unit_price`
- - `image_url` -> `images`
+### Product entries
+
+- `price` -> `gross_price`
+- `unit_price` -> `gross_unit_price`
+- `image_url` -> `images`
