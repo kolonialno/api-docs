@@ -15,6 +15,17 @@ And btw, we're hiring! [Read more about our technology](https://kolonial.no/om/t
 ## Anonymous requests
 
 
+### Product categories
+
+To get a list of all product categories:
+
+    GET /api/v1/productcategories/
+
+The product category ID can be used to obtain all products in a given child category:
+
+    GET /api/v1/productcategories/<product_category_id>/
+
+
 ### Search
 
 The search endpoint can be used for both text queries and barcodes.
@@ -26,7 +37,7 @@ The search endpoint can be used for both text queries and barcodes.
 
 Some endpoints require that the user is authenticated.
 
-### Session token
+### Obtaining a session token
 
 Acquire a session token with the login endpoint:
 
@@ -50,6 +61,8 @@ Update cart contents:
 
     POST /api/v1/cart/items/
     {"items": [{"product_id": 9329, "quantity": 2}]}
+
+The `quantity` field adjusts the quantity currently in the cart.
 
 
 ## Deprecated fields
