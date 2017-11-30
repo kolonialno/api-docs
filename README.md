@@ -12,62 +12,76 @@ And btw, we're hiring! [Read more about our technology](https://kolonial.no/om/t
     curl -H "Accept: application/json" -H "Content-Type: application/json" -H "User-Agent: <YOUR-USER-AGENT>/1.0" -H "X-Client-Token: <YOUR-CLIENT-TOKEN>" https://kolonial.no/api/v1/products/9329/
 
 
-## Anonymous requests
+## Usage
 
+All requests require that the `User-Agent` and `X-Client-Token` headers are set. These are unique for the developers participating in the beta, so please do not share these. That said, we would really love if you open sourced your code!
+
+We return JSON on all endpoints, and expect it as input. Remember to set the `Accept` and `Content-Type` headers accordingly.
+
+### Authentication
+
+Some endpoints requires that the user is authenticated. To acquire a session token, use the login endpoint and save the returned `sessionid` for use with subsequent requests. The session is valid for a very long time.
+
+To access authenticated URLs, set the HTTP header `Cookie: sessionid=<token>`.
+
+    POST /api/v1/user/login/
+        {"username": "", "password": ""}
+
+    POST /api/v1/user/logout/
+
+
+## Endpoints
 
 ### Product categories
 
-To get a list of all product categories:
+Get a list of all product categories. The product category ID can be used to obtain all products in a given _child_ category:
 
     GET /api/v1/productcategories/
-
-The product category ID can be used to obtain all products in a given child category:
-
     GET /api/v1/productcategories/<product_category_id>/
 
 
 ### Search
 
-The search endpoint can be used for both text queries and barcodes.
+The main search endpoint can be used for both text queries and numeric barcodes.
 
-    GET /api/v1/search/?q=banan
-
-
-## Authenticated requests
-
-Some endpoints require that the user is authenticated.
-
-### Obtaining a session token
-
-Acquire a session token with the login endpoint:
+    GET /api/v1/search/?q=mango
+    GET /api/v1/search/recipes/?q=pasta
 
 
-    POST /api/v1/user/login/
-    {"username": "", "password": ""}
+### Recipes
 
-If successful, returns a `sessionid` which can be used for subsequent requests. This is valid for a long time.
+These are some of the recipe related endpoints:
 
-To access authenticated URLs, set HTTP header `Cookie: sessionid=<token>`.
+    GET /api/v1/recipes/
+    GET /api/v1/recipes/<recipe_id>/
+    GET /api/v1/recipes/plans/current/
+
+These endpoints are personal for the user and requires authentication:
 
 
-### Authenticated endpoints
+    GET  /api/v1/recipes/likes/
+    GET  /api/v1/recipes/purchased/
+    POST /api/v1/recipes/<recipe_id>/like-toggle/
 
-Returns the current user's cart with full product contents:
+
+### Cart
+
+Manipulating the cart contents requires authentication. The `quantity` field adjusts the quantity currently in the cart.
 
     GET /api/v1/cart/
 
-
-Update cart contents:
-
     POST /api/v1/cart/items/
-    {"items": [{"product_id": 9329, "quantity": 2}]}
+        {"items": [{
+            "product_id": 9329, "quantity": 2,
+            "product_id": 15163, "quantity": -1
+        }]}
 
-The `quantity` field adjusts the quantity currently in the cart.
+    POST /api/v1/cart/clear/
 
 
 ## Deprecated fields
 
-These fields will be removed at a later date, please make use of the new fields as soon as possible:
+These fields will be removed soon, please make use of the new fields as soon as possible:
 
 ### Product entries
 
