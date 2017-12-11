@@ -32,12 +32,16 @@ To access authenticated URLs, set the HTTP header `Cookie: sessionid=<token>`.
 
 ## Endpoints
 
-### Product categories
+### Products
 
-Get a list of all product categories. The product category ID can be used to obtain all products in a given _child_ category:
+The product category ID can be used to obtain all products in a given _child_ category:
 
     GET /api/v1/productcategories/
     GET /api/v1/productcategories/<product_category_id>/
+
+Extended product information:
+
+    GET /api/v1/products/<product_id>/
 
 
 ### Search
