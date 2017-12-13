@@ -56,9 +56,11 @@ The main search endpoint can be used for both text queries and numeric barcodes.
 
 These are some of the recipe related endpoints:
 
-    GET /api/v1/recipes/
-    GET /api/v1/recipes/<recipe_id>/
+    GET /api/v1/recipe-tags/
+    GET /api/v1/recipe-tags/<recipe_tag_id>/
     GET /api/v1/recipes/plans/current/
+
+    GET /api/v1/recipes/<recipe_id>/
 
 These endpoints are personal for the user and requires authentication:
 
