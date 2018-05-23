@@ -77,9 +77,14 @@ Manipulating the cart contents requires authentication. The `quantity` field adj
     GET /api/v1/cart/
 
     POST /api/v1/cart/items/
-        {"items": [{
-            "product_id": 9329, "quantity": 2,
-            "product_id": 15163, "quantity": -1
-        }]}
+        {
+            "items": [{
+                "product_id": 9329,
+                "quantity": 2,
+            }, {
+                "product_id": 15163,
+                "quantity": -1
+            }]
+        }
 
     POST /api/v1/cart/clear/
