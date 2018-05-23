@@ -83,14 +83,3 @@ Manipulating the cart contents requires authentication. The `quantity` field adj
         }]}
 
     POST /api/v1/cart/clear/
-
-
-## Deprecated fields
-
-These fields will be removed soon, please make use of the new fields as soon as possible:
-
-### Product entries
-
-- `price` -> `gross_price`
-- `unit_price` -> `gross_unit_price`
-- `image_url` -> `images`
