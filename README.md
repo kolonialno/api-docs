@@ -88,3 +88,178 @@ Manipulating the cart contents requires authentication. The `quantity` field adj
         }
 
     POST /api/v1/cart/clear/
+
+
+### Shopping lists (Product List)
+
+Shopping lists (technically called product lists) can be manipulated through authenticated API calls.
+
+#### List all product lists
+
+Paginated response. Page size is 50 lists.
+
+    GET /api/v1/product-lists/
+
+    Response:
+    {
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "id": 234583,
+          "title": "My taco list",
+          "description": "Collection of taco products",
+          "url": "/handlelister/234583/",
+          "number_of_items": 1,
+          "images": [
+            {
+              "thumbnail": {
+                "url": "https://bilder.kolonial.no/produkter/0455625a-13eb-4837-87e5-e3ff3332c6c0.jpeg?w=300&s=9705feaa45cb26ffdd17166e6881e349"
+              }
+            }
+          ]
+        }
+      ]
+    }
+
+#### Show product list items/details
+
+    GET /api/v1/product-lists/<id>/
+
+    Response:
+    {
+      "id": 234583,
+      "title": "My taco list",
+      "description": "Collection of taco products",
+      "url": "/handlelister/234583/",
+      "number_of_items": 1,
+      "items": [
+        {
+          "quantity": 1
+          "product": {
+            ...
+          },
+        }
+      ]
+    }
+
+#### Create new product list
+
+    POST /api/v1/product-lists/new/
+
+    Payload:
+    {
+      "title": "My new list",
+      "description": "An optional description"
+    }
+
+    Response:
+    {
+      "id": <id>,
+      "title": "My new list",
+      "description": "An optional description",
+      "url": "/handlelister/<id>/",
+      "number_of_items": 0,
+      "items": []
+    }
+
+
+#### Change title and/or description
+
+    POST /api/v1/product-lists/<id>/update/
+
+    Payload:
+    {
+      "title": "My updated list title",
+      "description": "An new description"
+    }
+
+    Response:
+    {
+      "id": <id>,
+      "title": "My updated list title",
+      "description": "A new description",
+      "url": "/handlelister/<id>/",
+      "number_of_items": 0,
+      "items": []
+    }
+
+#### Delete an existing product list
+
+    POST /api/v1/product-lists/<id>/delete/
+
+    Response:
+    {
+      "success": true
+    }
+
+#### Add new product to list
+
+    POST /api/v1/product-lists/<id>/products/
+
+    Payload:
+    {
+      "product_id": <id>,
+      "quantity": 1
+    }
+
+    Response:
+    {
+      "id": <id>,
+      "title": "Example list title",
+      "description": "",
+      "url": "/handlelister/<id>/",
+      "number_of_items": 1,
+      "items": [...]
+    }
+
+#### Decrease quantity of product in list
+
+Note: Notice that we use the same endpoint (`products/`) to manipulate all
+items in the product list.
+
+Also note that decreasing the quantity to 0 (zero) does not delete the product
+from the list. In order to delete the product you need to pass `delete: true`
+in the payload (see below).
+
+    POST /api/v1/product-lists/<id>/products/
+
+    Payload:
+    {
+      "product_id": <id>,
+      "quantity": -1
+    }
+
+    Response:
+    {
+      "id": <id>,
+      "title": "Example list title",
+      "description": "",
+      "url": "/handlelister/<id>/",
+      "number_of_items": 1,
+      "items": [...]
+    }
+
+#### Remove product from list
+
+Note: Notice that we use the same endpoint (`products/`) to manipulate all
+items in the product list.
+
+    POST /api/v1/product-lists/<id>/products/
+
+    Payload:
+    {
+      "product_id": <id>,
+      "quantity": -1,
+      "delete": true
+    }
+
+    Response:
+    {
+      "id": <id>,
+      "title": "Example list title",
+      "description": "",
+      "url": "/handlelister/<id>/",
+      "number_of_items": 0,
+      "items": []
+    }
