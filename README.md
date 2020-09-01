@@ -106,15 +106,15 @@ Paginated response. Page size is 50 lists.
       "previous": null,
       "results": [
         {
-          "id": 234583,
+          "id": <id>,
           "title": "My taco list",
           "description": "Collection of taco products",
-          "url": "/handlelister/234583/",
+          "url": "/handlelister/<id>/",
           "number_of_items": 1,
           "images": [
             {
               "thumbnail": {
-                "url": "https://bilder.kolonial.no/produkter/0455625a-13eb-4837-87e5-e3ff3332c6c0.jpeg?w=300&s=9705feaa45cb26ffdd17166e6881e349"
+                "url": "..."
               }
             }
           ]
@@ -128,10 +128,10 @@ Paginated response. Page size is 50 lists.
 
     Response:
     {
-      "id": 234583,
+      "id": <id>,
       "title": "My taco list",
       "description": "Collection of taco products",
-      "url": "/handlelister/234583/",
+      "url": "/handlelister/<id>/",
       "number_of_items": 1,
       "items": [
         {
