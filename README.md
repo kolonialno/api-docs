@@ -111,6 +111,7 @@ Paginated response. Page size is 50 lists.
           "description": "Collection of taco products",
           "url": "/handlelister/<id>/",
           "number_of_items": 1,
+          "number_of_products": 1,
           "images": [
             {
               "thumbnail": {
@@ -133,6 +134,7 @@ Paginated response. Page size is 50 lists.
       "description": "Collection of taco products",
       "url": "/handlelister/<id>/",
       "number_of_items": 1,
+      "number_of_products": 1,
       "items": [
         {
           "quantity": 1
@@ -145,7 +147,7 @@ Paginated response. Page size is 50 lists.
 
 #### Create new product list
 
-    POST /api/v1/product-lists/new/
+    POST /api/v1/product-lists/
 
     Payload:
     {
@@ -160,13 +162,14 @@ Paginated response. Page size is 50 lists.
       "description": "An optional description",
       "url": "/handlelister/<id>/",
       "number_of_items": 0,
+      "number_of_products": 0,
       "items": []
     }
 
 
 #### Change title and/or description
 
-    POST /api/v1/product-lists/<id>/update/
+    POST /api/v1/product-lists/<id>/
 
     Payload:
     {
@@ -181,12 +184,13 @@ Paginated response. Page size is 50 lists.
       "description": "A new description",
       "url": "/handlelister/<id>/",
       "number_of_items": 0,
+      "number_of_products": 0,
       "items": []
     }
 
 #### Delete an existing product list
 
-    POST /api/v1/product-lists/<id>/delete/
+    DELETE /api/v1/product-lists/<id>/
 
     Response:
     {
@@ -199,8 +203,12 @@ Paginated response. Page size is 50 lists.
 
     Payload:
     {
-      "product_id": <id>,
-      "quantity": 1
+      "items": [
+        {
+          "product_id": <id>,
+          "quantity": 1
+        }
+      ]
     }
 
     Response:
@@ -210,6 +218,7 @@ Paginated response. Page size is 50 lists.
       "description": "",
       "url": "/handlelister/<id>/",
       "number_of_items": 1,
+      "number_of_products": 0,
       "items": [...]
     }
 
@@ -226,8 +235,12 @@ in the payload (see below).
 
     Payload:
     {
-      "product_id": <id>,
-      "quantity": -1
+      "items": [
+        {
+          "product_id": <id>,
+          "quantity": -1
+        }
+      ]
     }
 
     Response:
@@ -237,6 +250,7 @@ in the payload (see below).
       "description": "",
       "url": "/handlelister/<id>/",
       "number_of_items": 1,
+      "number_of_products": 1,
       "items": [...]
     }
 
@@ -249,9 +263,13 @@ items in the product list.
 
     Payload:
     {
-      "product_id": <id>,
-      "quantity": -1,
-      "delete": true
+      "items": [
+        {
+          "product_id": <id>,
+          "quantity": -1,
+          "delete": true
+        }
+      ]
     }
 
     Response:
@@ -261,5 +279,6 @@ items in the product list.
       "description": "",
       "url": "/handlelister/<id>/",
       "number_of_items": 0,
+      "number_of_products": 0,
       "items": []
     }
