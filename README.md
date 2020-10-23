@@ -282,3 +282,24 @@ items in the product list.
       "number_of_products": 0,
       "items": []
     }
+
+#### Get list of product suggestions from product list
+
+Based on product list title we can offer a set of products that might be quickly
+added to the product list, without the need for e.g. searching.
+
+    GET /api/v1/product-lists/<id>/suggestions/
+
+    Accepted Query Params:
+      - offset (int, default: 0)
+      - limit (int, default: 6)
+
+    Response:
+    {
+      "next": "https://kolonial.no/api/v1/...",
+      "previous": null,
+      "results": [
+        {...},
+        {...}
+      ],
+    }
