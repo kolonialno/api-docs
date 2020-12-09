@@ -1,6 +1,6 @@
 # Kolonial.no API
 
-The API is currently not publicly available, but feel free to contact us if you have a great idea and want early access! You can reach us by mail at `api at kolonial dot no`.
+The API is currently not publicly available.
 
 We only allow pre-approved API clients at this time, and each client needs a unique `User-Agent` and `Client-Token`. This is a work in progress and no API stability is guaranteed at this time.
 
