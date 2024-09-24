@@ -4,8 +4,6 @@ The API is currently not publicly available.
 
 We only allow pre-approved API clients at this time, and each client needs a unique `User-Agent` and `Client-Token`. This is a work in progress and no API stability is guaranteed at this time.
 
-And btw, we're hiring! [Read more about our technology](https://oda.com/no/about/technology/) :raised_hands:
-
 
 ## Quick start
 
